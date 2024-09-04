@@ -1,0 +1,24 @@
+name: Python Flask App Build and Deploy to EC2 Instance
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+      runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - name: Install Python Modules
+      run: pip install -r requirements.txt
+
+    - name: Run Unit Test Cases
+      run: python tests.py
